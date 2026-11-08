@@ -2,12 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>TrocScolaire - Accueil</title>
+    <title>TrocScolaire</title>
+    <!-- Lien vers le manifeste PWA et l'icône -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+    
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f6f9; }
-        h1 { color: #2c3e50; }
-        a { display: inline-block; margin: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; }
-        a:hover { background: #2980b9; }
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f9fafb; color: #1f2937; }
+        a { display: inline-block; margin: 10px; padding: 10px 20px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 5px; }
+        a:hover { background-color: #2563eb; }
     </style>
 </head>
 <body>
@@ -16,16 +19,5 @@
     <br>
     <a href="/objets">Voir les objets disponibles</a>
     <a href="/ajouter">Proposer un objet</a>
-</body>
-</html><!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>TrocScolaire</title>
-</head>
-<body>
-<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <h1>Bienvenue sur TrocScolaire</h1>
-    <p>Le site est en ligne !</p>
 </body>
 </html>
