@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Objets à troquer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f9; }
+        h1 { color: #2c3e50; }
+        ul { list-style: none; padding: 0; }
+        li { background: white; margin-bottom: 10px; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #2c3e50; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Liste des affaires à troquer 📚</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div style="padding: 10px; margin-bottom: 15px; background: {% if category == 'success' %}#d4edda{% else %}#f8d7da{% endif %}; color: {% if category == 'success' %}#155724{% else %}#721c24{% endif %}; border-radius: 5px;">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <ul>
+        {% for objet in objets %}
+            <li>
+                <strong>{{ objet.titre }}</strong> (Catégorie : {{ objet.categorie }})<br>
+                <small>Contact : {{ objet.contact }}</small>
+            </li>
+        {% else %}
+            <li>Aucun objet pour le moment.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/ajouter" class="btn">Ajouter un objet</a>
+    <a href="/" class="btn" style="background: #7f8c8d;">Retour à l'accueil</a>
+</body>
+</html>
