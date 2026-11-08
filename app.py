@@ -1,4 +1,48 @@
 import os
+from flask import Flask, render_template, request, redirect, url_for, flash
+
+app = Flask(__name__)
+app.secret_key = 'une_cle_secrete_pour_les_messages'  # Nécessaire pour utiliser flash()
+
+# Une petite liste de test pour stocker les objets de troc en mémoire
+objets_troc = [
+    {"id": 1, "titre": "Livre de Maths 4ème", "categorie": "Livres", "contact": "eleve1@ecole.fr"},
+    {"id": 2, "titre": "Calculatrice scientifique", "categorie": "Matériel", "contact": "eleve2@ecole.fr"}
+]
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/objets')
+def liste_objets():
+    return render_template('objets.html', objets=objets_troc)
+
+@app.route('/ajouter', methods=['GET', 'POST'])
+def ajouter_objet():
+    if request.method == 'POST':
+        titre = request.form.get('titre')
+        categorie = request.form.get('categorie')
+        contact = request.form.get('contact')
+        
+        if titre and categorie and contact:
+            nouveau_id = len(objets_troc) + 1
+            objets_troc.append({
+                "id": nouveau_id,
+                "titre": titre,
+                "categorie": categorie,
+                "contact": contact
+            })
+            flash("Objet ajouté avec succès pour le troc !", "success")
+            return redirect(url_for('liste_objets'))
+        else:
+            flash("Veuillez remplir tous les champs.", "danger")
+            
+    return render_template('ajouter.html')
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
