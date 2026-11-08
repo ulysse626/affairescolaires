@@ -260,5 +260,8 @@ def messages_page():
     user_messages = [m for m in messages if m['sender'] == current_user or m['receiver'] == current_user]
     return render_template('messages.html', user_messages=user_messages, user=users[current_user])
 
+import os
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
