@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un objet</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f9; }
+        form { background: white; padding: 20px; border-radius: 5px; max-width: 400px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background: #27ae60; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #219653; }
+        a { display: inline-block; margin-top: 15px; color: #3498db; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Proposer une affaire scolaire ✍️</h1>
+    
+    <form method="POST">
+        <label for="titre">Nom de l'objet :</label>
+        <input type="text" id="titre" name="titre" required placeholder="Ex: Livre d'histoire 3ème">
+
+        <label for="categorie">Catégorie :</label>
+        <select id="categorie" name="categorie">
+            <option value="Livres">Livres / Manuels</option>
+            <option value="Matériel">Matériel (calculatrice, compas...)</option>
+            <option value="Fournitures">Fournitures (cahiers, trousse...)</option>
+        </select>
+
+        <label for="contact">Votre email ou contact :</label>
+        <input type="text" id="contact" name="contact" required placeholder="votre.email@ecole.fr">
+
+        <button type="submit">Valider et publier</button>
+    </form>
+
+    <a href="/">← Retour à l'accueil</a>
+</body>
+</html>
